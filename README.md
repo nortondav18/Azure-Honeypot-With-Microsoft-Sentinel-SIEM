@@ -41,6 +41,13 @@ Create KQL queries, custom alerts, and a Sentinel dashboard showing attack sourc
 <img width="1672" height="607" alt="image" src="https://github.com/user-attachments/assets/b8cf947f-6419-4ecb-b8c1-ef317e3904a6" />
 <img width="1708" height="711" alt="image" src="https://github.com/user-attachments/assets/69f5fb71-2d2e-4213-97c3-bbcd363ba6ee" />
 
+<img width="2510" height="1206" alt="image" src="https://github.com/user-attachments/assets/1e84dee1-542c-4956-92ac-7c4b899f9c39" />
+<img width="1761" height="1214" alt="image" src="https://github.com/user-attachments/assets/775de5b4-c499-457b-9bae-9a0aeb197a45" />
+
+<img width="2052" height="1112" alt="image" src="https://github.com/user-attachments/assets/405c3641-8d0f-43e4-b9d9-5c907aea18be" />
+
+
+
 
 
 
