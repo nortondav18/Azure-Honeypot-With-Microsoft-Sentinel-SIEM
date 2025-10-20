@@ -10,25 +10,23 @@ Start off by creating a resource group this will be the container that holds all
 
 Create a virtual network and select your resource group. This is what provides our VM with internet access.
 <img width="975" height="873" alt="image" src="https://github.com/user-attachments/assets/cdfc7442-3b75-4831-ad09-f69f377dea3b" />
+
 Create a virtual machine and select your resource group.
 <img width="956" height="872" alt="image" src="https://github.com/user-attachments/assets/a5a8f215-4c8d-4adc-9d76-87f1b8acbed9" />
-
-
-
 <img width="855" height="932" alt="image" src="https://github.com/user-attachments/assets/ac16af0b-5d9d-48da-8a9d-44ee6893fe93" />
 
 Go to the resource group and select the network security group. 
 <img width="1214" height="773" alt="image" src="https://github.com/user-attachments/assets/6b3876de-0468-44f9-a6dc-b3d3a176a7fe" />
 
 Delete the RDP rule.
-<img width="899" height="650" alt="image" src="https://github.com/user-attachments/assets/d6c7f489-1554-491b-89fe-d66007604f2f" />
-
 <img width="1892" height="674" alt="image" src="https://github.com/user-attachments/assets/42c7cbc3-71df-464e-821f-a5b5844b502f" />
+
+Create a new inbound security rule.
+<img width="899" height="650" alt="image" src="https://github.com/user-attachments/assets/d6c7f489-1554-491b-89fe-d66007604f2f" />
 
 <img width="1310" height="737" alt="image" src="https://github.com/user-attachments/assets/66b29c64-f883-4a30-a57f-c2ac079726ba" />
 
 <img width="1868" height="690" alt="image" src="https://github.com/user-attachments/assets/b3667307-744a-44de-8bb8-98a66a40a001" />
-
 
 
 <img width="1890" height="887" alt="image" src="https://github.com/user-attachments/assets/c25a3407-0b53-4822-b1ff-5b25448e241c" />
