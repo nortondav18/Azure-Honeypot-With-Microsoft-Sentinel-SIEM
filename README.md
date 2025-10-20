@@ -67,6 +67,7 @@ Create a new inbound security rule.
 <img width="2511" height="1170" alt="image" src="https://github.com/user-attachments/assets/c18b4096-12db-4fcd-879e-2424733d3750" />
 
 <img width="2159" height="597" alt="image" src="https://github.com/user-attachments/assets/df3d050b-c7ae-4b97-bd4d-f1b35b980945" />
+<img width="1306" height="461" alt="image" src="https://github.com/user-attachments/assets/b1f9d7f8-9d58-42b9-a720-032e1b54bc6d" />
 
 
 
