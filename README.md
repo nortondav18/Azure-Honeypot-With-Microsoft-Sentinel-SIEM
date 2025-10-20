@@ -19,9 +19,11 @@ Go to the resource group and select the network security group.
 <img width="1214" height="773" alt="image" src="https://github.com/user-attachments/assets/6b3876de-0468-44f9-a6dc-b3d3a176a7fe" />
 
 Delete the RDP rule.
-<img width="899" height="650" alt="image" src="https://github.com/user-attachments/assets/d6c7f489-1554-491b-89fe-d66007604f2f" />
+<img width="1892" height="674" alt="image" src="https://github.com/user-attachments/assets/42c7cbc3-71df-464e-821f-a5b5844b502f" />
+
 
 Create a new inbound security rule.
+<img width="1890" height="887" alt="image" src="https://github.com/user-attachments/assets/c25a3407-0b53-4822-b1ff-5b25448e241c" />
 <img width="867" height="491" alt="image" src="https://github.com/user-attachments/assets/c117ef61-100d-4dd2-82b7-50e516c32415" />
 
 
@@ -29,8 +31,7 @@ Create a new inbound security rule.
 
 <img width="1868" height="690" alt="image" src="https://github.com/user-attachments/assets/b3667307-744a-44de-8bb8-98a66a40a001" />
 
-<img width="1892" height="674" alt="image" src="https://github.com/user-attachments/assets/42c7cbc3-71df-464e-821f-a5b5844b502f" />
-<img width="1890" height="887" alt="image" src="https://github.com/user-attachments/assets/c25a3407-0b53-4822-b1ff-5b25448e241c" />
+<img width="899" height="650" alt="image" src="https://github.com/user-attachments/assets/d6c7f489-1554-491b-89fe-d66007604f2f" />
 
 
 <img width="1750" height="575" alt="image" src="https://github.com/user-attachments/assets/5f7f9fe6-736b-4c31-903a-9de0ef7ad8c6" />
