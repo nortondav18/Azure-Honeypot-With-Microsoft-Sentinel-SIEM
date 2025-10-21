@@ -1,14 +1,14 @@
-# Azure-Honeypot-With-Microsoft-Sentinel-SIEM
+# Azure Honeypot With Microsoft Sentinel SIEM
 In this project I Deploy a public-facing Windows VM on Azure.
 Intentionally expose certain ports (RDP) to attract malicious traffic.
 Use Log Analytics and Microsoft Sentinel to collect and analyze attack logs.
-Create KQL queries, custom alerts, and a Sentinel dashboard showing attack sources, geolocations, and methods.
+Create KQL queries, a Sentinel dashboard showing attack sources, and geolocations.
 
 <br><br>
 Start off by creating a resource group this will be the container that holds all our resources for this project.
 <img width="975" height="521" alt="image" src="https://github.com/user-attachments/assets/58132339-063e-446a-8e6a-044e856234f2" />
 
-Create a virtual network and select your resource group. This is what provides our VM with internet access.
+Create a virtual network and select your resource group. This is what will provide our VM with internet access.
 <img width="975" height="873" alt="image" src="https://github.com/user-attachments/assets/cdfc7442-3b75-4831-ad09-f69f377dea3b" />
 
 Create a virtual machine and select your resource group and network group.
@@ -25,10 +25,10 @@ Delete the RDP rule.
 Create a new inbound security rule and set the destination port to '*'.
 <img width="1890" height="887" alt="image" src="https://github.com/user-attachments/assets/c25a3407-0b53-4822-b1ff-5b25448e241c" />
 
-Conect to your vm using the credentials you just made.
+Conect to your VM using the credentials you just made.
 <img width="867" height="491" alt="image" src="https://github.com/user-attachments/assets/c117ef61-100d-4dd2-82b7-50e516c32415" />
 
-Once you login go to the firewall settings and turn off the firewall the reason we do this is because the Windows firewall on your Azure VM blocks inbound traffic by default, which prevents most scans or exploit attempts from reaching your services.
+Once you login go to the firewall settings and turn off the firewall. The reason we do this is because the Windows firewall on your Azure VM blocks inbound traffic by default, which prevents most scans or exploit attempts from reaching your services.
 <img width="1310" height="737" alt="image" src="https://github.com/user-attachments/assets/66b29c64-f883-4a30-a57f-c2ac079726ba" />
 
 Close the VM and try to ping the VM you should receive replies meaning the VM is exposed to the internet.
@@ -40,7 +40,7 @@ Creat a log analytics workspace so that we can colect and query logs from our VM
 Search for Microsoft Sentinel in the search bar, create and add your log analytics workspace.
 <img width="1750" height="575" alt="image" src="https://github.com/user-attachments/assets/5f7f9fe6-736b-4c31-903a-9de0ef7ad8c6" />
 
-Go to the conten hub in Microsoft Sentinel.
+Go to the content hub in Microsoft Sentinel.
 <img width="1391" height="796" alt="image" src="https://github.com/user-attachments/assets/004f3e3b-de72-4e47-8efe-059963246998" />
 
 Install the Windows Security Events solution and click manage.
@@ -67,27 +67,30 @@ Senteniel uses KQL which is very similar to SQL. Start by searching for all secu
 Here we search for invaild login attempts and there is quite a lot.
 <img width="1761" height="1214" alt="image" src="https://github.com/user-attachments/assets/775de5b4-c499-457b-9bae-9a0aeb197a45" />
 
-We can refine our search so we only get the informaion that we are interested in 
+We can refine our search so we only get the informaion that we are interested in.
 <img width="2052" height="1112" alt="image" src="https://github.com/user-attachments/assets/405c3641-8d0f-43e4-b9d9-5c907aea18be" />
 
 From here we can look up where these invaild login attempts are coming from to help determine if they are malicous, if it isnt't already obvious.
 <img width="1459" height="514" alt="image" src="https://github.com/user-attachments/assets/a98ca9df-70a0-4d40-ac91-48df61b497a7" />
 
-We can query all sort of differnt event IDs and monitor our VM. Here I search for event ID 4720: A user account was created to see if any new account were created you could also query event ID 4624 to see if any attacker were able to gain access to the VM.
+We can query all sort of differnt event IDs and monitor our VM. Here I search for event ID 4720: A user account was created to see if any new account were created you could also query event ID 4624 to see if any attacker was able to gain access to the VM.
 <img width="1550" height="885" alt="image" src="https://github.com/user-attachments/assets/e717c9a2-040a-492b-a673-36ba809012e0" />
 
 Now lets create a Workbook in Sentinel. A Workbook in Microsoft Sentinel is done to visualize, analyze, and monitor security data. Essentially, it turns raw log data into meaningful dashboards and insights.
 <img width="1521" height="636" alt="image" src="https://github.com/user-attachments/assets/f6df4802-1f97-42f1-a6c2-479c8427b59e" />
 
-To strat I query for a count of top 10 Ip address that are failing to login to my 
+To start I query for a count of top 10 Ip address that are failing to login to my 
 <img width="2511" height="1118" alt="image" src="https://github.com/user-attachments/assets/f0262c53-1780-41c7-b485-52f5adb765e9" />
 
-I also created a wWorkbook query that display the time line of when these invaild login attempts are happening
-<img width="2511" height="1170" alt="image" src="https://github.com/user-attachments/assets/c18b4096-12db-4fcd-879e-2424733d3750" />
-
+I further refine the query so that it displays the contries for the top attackers.
 <img width="2159" height="597" alt="image" src="https://github.com/user-attachments/assets/df3d050b-c7ae-4b97-bd4d-f1b35b980945" />
 <img width="1306" height="461" alt="image" src="https://github.com/user-attachments/assets/b1f9d7f8-9d58-42b9-a720-032e1b54bc6d" />
-<img width="1306" height="461" alt="image" src="https://github.com/user-attachments/assets/38d2cc04-dd8e-4ae4-9ba6-821766b5f7df" />
+
+I also created a Workbook query that display the time line of when these invaild login attempts are happening
+<img width="2511" height="1170" alt="image" src="https://github.com/user-attachments/assets/c18b4096-12db-4fcd-879e-2424733d3750" />
+
+
+
 
 
 
