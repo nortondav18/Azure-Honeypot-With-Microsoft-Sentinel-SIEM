@@ -1,9 +1,6 @@
 # Azure Honeypot With Microsoft Sentinel SIEM
-In this project I deploy a public facing Windows VM on Azure.
-Intentionally expose certain ports to attract malicious traffic.
-Use Log Analytics and Microsoft Sentinel to collect and analyze attack logs.
-Create KQL queries, a Sentinel dashboard showing attack sources, and geolocations.
-
+In this project I deployed a public-facing Windows VM in Azure and exposed select ports to attract malicious traffic; 
+used Microsoft Sentinel and Log Analytics to analyze attack telemetry and built KQL queries with a dashboard mapping attack sources and geolocations.
 <br><br>
 Start off by creating a resource group this will be the container that holds all our resources for this project.
 <img width="975" height="521" alt="image" src="https://github.com/user-attachments/assets/58132339-063e-446a-8e6a-044e856234f2" />
