@@ -69,41 +69,42 @@ Select Windows Security Events via AMA. This will allow us to ingest security ev
 Create a data collection rule.
 <img width="1899" height="934" alt="image" src="https://github.com/user-attachments/assets/016695f2-1bd9-4238-807b-ad2bfc9ab5e4" />
 
-Select your VM and create.<br><br>
+Select your VM and create.<br>
 <img width="603" height="519" alt="image" src="https://github.com/user-attachments/assets/e7eb3f54-c1d1-4a3e-a9d9-5a50f8070dc7" />
 
 Go back to your VM and go to extentions + applications then select the data collection rule.
 <img width="1672" height="607" alt="image" src="https://github.com/user-attachments/assets/b8cf947f-6419-4ecb-b8c1-ef317e3904a6" />
 
-now go to the log analytics workspace and select logs 
+now go to the log analytics workspace and select logs. Senteniel uses KQL which is very similar to SQL. Start by searching for all security events. You will likely need to let the VM run for a few hours to collect some logs.
 <img width="1708" height="711" alt="image" src="https://github.com/user-attachments/assets/69f5fb71-2d2e-4213-97c3-bbcd363ba6ee" />
 
-Senteniel uses KQL which is very similar to SQL. Start by searching for all security events. You will likely need to let the VM run for a few hours to collect some logs.
+Here we search for invaild login attempts and there is quite a lot.
 <img width="2510" height="1206" alt="image" src="https://github.com/user-attachments/assets/1e84dee1-542c-4956-92ac-7c4b899f9c39" />
 
-Here we search for invaild login attempts and there is quite a lot.
+We can refine our search so we only get the informaion that we are interested in.
 <img width="1761" height="1214" alt="image" src="https://github.com/user-attachments/assets/775de5b4-c499-457b-9bae-9a0aeb197a45" />
 
-We can refine our search so we only get the informaion that we are interested in.
+From here we can look up where these invaild login attempts are coming from to help determine if they are malicous, if it isnt't already obvious.
 <img width="2052" height="1112" alt="image" src="https://github.com/user-attachments/assets/405c3641-8d0f-43e4-b9d9-5c907aea18be" />
 
-From here we can look up where these invaild login attempts are coming from to help determine if they are malicous, if it isnt't already obvious.
+We can query all sort of differnt event IDs and monitor our VM. 
+Here I search for event ID 4720: A user account was created to see if any new account were created.
+You could also query event ID 4624 to see if any attacker was able to gain access to the VM.
 <img width="1459" height="514" alt="image" src="https://github.com/user-attachments/assets/a98ca9df-70a0-4d40-ac91-48df61b497a7" />
 
-We can query all sort of differnt event IDs and monitor our VM. Here I search for event ID 4720: A user account was created to see if any new account were created you could also query event ID 4624 to see if any attacker was able to gain access to the VM.
+Now lets create a Workbook in Sentinel.
+A Workbook in Microsoft Sentinel is used to visualize, analyze, and monitor security data. Essentially, it turns raw log data into meaningful dashboards and insights.
 <img width="1550" height="885" alt="image" src="https://github.com/user-attachments/assets/e717c9a2-040a-492b-a673-36ba809012e0" />
-
-Now lets create a Workbook in Sentinel. A Workbook in Microsoft Sentinel is done to visualize, analyze, and monitor security data. Essentially, it turns raw log data into meaningful dashboards and insights.
 <img width="1521" height="636" alt="image" src="https://github.com/user-attachments/assets/f6df4802-1f97-42f1-a6c2-479c8427b59e" />
 
-To start I query for a count of top 10 Ip address that are failing to login to my 
+To start I query for a count of top 10 IP address that are failing to login to the VM
 <img width="2511" height="1118" alt="image" src="https://github.com/user-attachments/assets/f0262c53-1780-41c7-b485-52f5adb765e9" />
 
-I further refine the query so that it displays the contries for the top attackers.
+I further refine the query so that it displays the contries names for the top attackers.
 <img width="2159" height="597" alt="image" src="https://github.com/user-attachments/assets/df3d050b-c7ae-4b97-bd4d-f1b35b980945" />
 <img width="1306" height="461" alt="image" src="https://github.com/user-attachments/assets/b1f9d7f8-9d58-42b9-a720-032e1b54bc6d" />
 
-I also created a Workbook query that display the time line of when these invaild login attempts are happening
+I also created a Workbook query that displays the timeline of when these invaild login attempts are happening.
 <img width="2511" height="1170" alt="image" src="https://github.com/user-attachments/assets/c18b4096-12db-4fcd-879e-2424733d3750" />
 
 
