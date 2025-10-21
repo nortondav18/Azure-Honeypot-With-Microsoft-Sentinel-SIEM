@@ -1,6 +1,6 @@
 # Azure Honeypot With Microsoft Sentinel SIEM
-In this project I Deploy a public-facing Windows VM on Azure.
-Intentionally expose certain ports (RDP) to attract malicious traffic.
+In this project I deploy a public facing Windows VM on Azure.
+Intentionally expose certain ports to attract malicious traffic.
 Use Log Analytics and Microsoft Sentinel to collect and analyze attack logs.
 Create KQL queries, a Sentinel dashboard showing attack sources, and geolocations.
 
@@ -18,9 +18,8 @@ Create a virtual machine and select your resource group and network group.
 Go to the resource group and select the network security group. 
 <img width="1214" height="773" alt="image" src="https://github.com/user-attachments/assets/6b3876de-0468-44f9-a6dc-b3d3a176a7fe" />
 
-Delete the RDP rule.
+Delete the RDP rule. Deleting the specific RDP rule and then creating a new rule that allows all inbound traffic is done to make the honeypot appear as wide open and “vulnerable” as possible.
 <img width="1892" height="674" alt="image" src="https://github.com/user-attachments/assets/42c7cbc3-71df-464e-821f-a5b5844b502f" />
-
 
 Create a new inbound security rule and set the destination port to '*'.
 <img width="1890" height="887" alt="image" src="https://github.com/user-attachments/assets/c25a3407-0b53-4822-b1ff-5b25448e241c" />
@@ -28,13 +27,31 @@ Create a new inbound security rule and set the destination port to '*'.
 Conect to your VM using the credentials you just made.
 <img width="867" height="491" alt="image" src="https://github.com/user-attachments/assets/c117ef61-100d-4dd2-82b7-50e516c32415" />
 
-Once you login go to the firewall settings and turn off the firewall. The reason we do this is because the Windows firewall on your Azure VM blocks inbound traffic by default, which prevents most scans or exploit attempts from reaching your services.
+Once you login go to the firewall settings and turn off the firewall. The reason we do this is because the Windows firewall on your Azure VM blocks inbound traffic by default, which prevents most scans or exploit attempts from reaching your services.<br>
+The Network Security Group acts like a perimeter firewall at the Azure network level it controls what traffic is allowed to reach the VM.
+But inside the VM, the Windows Firewall still decides whether to accept or reject that traffic.
+
+So even if your NSG allows all inbound traffic the Windows Firewall might still block: RDP (3389) SMB (445) HTTP (80) or any other service
+That means your honeypot would look “dead” or unresponsive to attackers. They could connect to the IP, but every port would appear closed.<br>
+Turning Off the Firewall Makes the Honeypot Fully Open
+
+By disabling the Windows Firewall:
+
+All inbound traffic that the NSG allows can actually reach the operating system.
+
+Attackers can attempt logins, scans, and exploits on any service/port.
+
+The system starts generating rich logs (failed logins, process creation events, Defender alerts, etc.).
+
+Essentially, this makes your honeypot visible, vulnerable, and valuable for analysis.
+
+
 <img width="1310" height="737" alt="image" src="https://github.com/user-attachments/assets/66b29c64-f883-4a30-a57f-c2ac079726ba" />
 
-Close the VM and try to ping the VM you should receive replies meaning the VM is exposed to the internet.
+Try to ping the VM you should receive replies meaning the VM is exposed to the internet.
 <img width="1868" height="690" alt="image" src="https://github.com/user-attachments/assets/b3667307-744a-44de-8bb8-98a66a40a001" />
 
-Creat a log analytics workspace so that we can colect and query logs from our VM remotly.
+Create a log analytics workspace so that we can colect and query logs from our VM remotely.
 <img width="899" height="650" alt="image" src="https://github.com/user-attachments/assets/d6c7f489-1554-491b-89fe-d66007604f2f" />
 
 Search for Microsoft Sentinel in the search bar, create and add your log analytics workspace.
@@ -52,16 +69,16 @@ Select Windows Security Events via AMA. This will allow us to ingest security ev
 Create a data collection rule.
 <img width="1899" height="934" alt="image" src="https://github.com/user-attachments/assets/016695f2-1bd9-4238-807b-ad2bfc9ab5e4" />
 
-Select your VM and create.
+Select your VM and create.<br><br>
 <img width="603" height="519" alt="image" src="https://github.com/user-attachments/assets/e7eb3f54-c1d1-4a3e-a9d9-5a50f8070dc7" />
 
 Go back to your VM and go to extentions + applications then select the data collection rule.
 <img width="1672" height="607" alt="image" src="https://github.com/user-attachments/assets/b8cf947f-6419-4ecb-b8c1-ef317e3904a6" />
 
-now go to the log analytics workspace and slect logs 
+now go to the log analytics workspace and select logs 
 <img width="1708" height="711" alt="image" src="https://github.com/user-attachments/assets/69f5fb71-2d2e-4213-97c3-bbcd363ba6ee" />
 
-Senteniel uses KQL which is very similar to SQL. Start by searching for all security events. You will likly need to let the vm run for a few hours to collect some logs.
+Senteniel uses KQL which is very similar to SQL. Start by searching for all security events. You will likely need to let the VM run for a few hours to collect some logs.
 <img width="2510" height="1206" alt="image" src="https://github.com/user-attachments/assets/1e84dee1-542c-4956-92ac-7c4b899f9c39" />
 
 Here we search for invaild login attempts and there is quite a lot.
